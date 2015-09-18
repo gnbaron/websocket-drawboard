@@ -3,7 +3,52 @@
   <head>
     <title>WebSocket Draw Board</title>
   </head>
+  <style type="text/css">
+    body { background: #C4C4C4; }
+    canvas { background: #E8DBB6; }
+  </style>
   <body>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" resize="true" keepalive="true"></canvas>
   </body>
+  <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/paperjs/paper.js"></script>
+  <script type="text/javascript">
+
+    var host = location.origin.replace(/^http/, 'ws');
+    var ws = new WebSocket(host);
+
+    $(function() {
+      
+      paper.setup(document.getElementById('canvas'));
+
+      var tool = new paper.Tool();
+      var path;
+
+      ws.onmessage = function(message) {
+        var mouseEvent = JSON.parse(message.data);
+        if(mouseEvent.type === 'onMouseDown'){
+          path = new paper.Path();
+          path.strokeColor = 'black';
+        }
+        path.add(mouseEvent.point);
+        paper.view.draw();
+      };
+
+      tool.onMouseDown = function(event) {
+        ws.send(JSON.stringify({
+          'type': 'onMouseDown', 
+          'point': event.point
+        }));
+      };
+
+      tool.onMouseDrag = function(event) {
+        ws.send(JSON.stringify({
+          'type': 'onMouseDrag', 
+          'point': event.point
+        }));
+      };
+      
+    });
+  </script>
+
 </html>
