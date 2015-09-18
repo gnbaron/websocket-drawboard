@@ -1,0 +1,28 @@
+{
+  "name": "websocket-drawboard",
+  "version": "1.0.0",
+  "description": "\"Live draw board using websockets, canvas and paper js.\"",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guilhermefloriani/websocket-drawboard"
+  },
+  "keywords": [
+    "paper",
+    "draw",
+    "websocket"
+  ],
+  "author": "Guilherme Floriani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilhermefloriani/websocket-drawboard/issues"
+  },
+  "homepage": "https://github.com/guilhermefloriani/websocket-drawboard",
+  "dependencies": {
+    "express": "^4.11.2",
+    "ws": "^0.8.0"
+  }
+}
