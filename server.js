@@ -33,7 +33,7 @@ wss.on('connection', function(ws) {
   });
 
   ws.on('close', function(){
-    console.log(ws.id + ' desconnected...');
+    console.log(ws.id + ' disconnected...');
     delete clients[ws.id];
   });
 });
