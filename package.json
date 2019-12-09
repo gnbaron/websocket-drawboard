@@ -23,6 +23,6 @@
   "homepage": "https://github.com/guilhermefloriani/websocket-drawboard",
   "dependencies": {
     "express": "^4.11.2",
-    "ws": "^0.8.0"
+    "ws": "^7.2.0"
   }
 }
